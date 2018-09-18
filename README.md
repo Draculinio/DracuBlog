@@ -1,5 +1,7 @@
 # DracuBlog
 Sistema de blog iniciado para el #100daysofcodechallenge
+
+
 # Day 1:
 
 -Index.html
@@ -7,8 +9,22 @@ Sistema de blog iniciado para el #100daysofcodechallenge
 
 TODO:
 
--Poner el texto en la página
+-Poner el texto en la página -Done Day 2.
 -Ver el tema de las tildes en consola
 -Averiguar como documentar mi codigo.
--Armar un objeto con todos los datos de mi texto
+-Armar un objeto con todos los datos de mi texto -Casi Done Day 2.
 -Standard de variables de js
+
+# Day 2:
+
+-Puedo poner texto de mis javascript en la pagina.
+-Arme el primer post
+-Objeto del post
+-Objeto del blog
+
+TODO: 
+
+-Ver si se pueden armar objetos sin valores x default
+-Modificar formato de fechas.
+-Ver si se puede postear en la pagina sin reemplazar el html existente
+-Modificar propiedades del Body.
