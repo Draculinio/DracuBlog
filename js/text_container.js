@@ -33,8 +33,6 @@ function modificar_maximo(nuevo_maximo){
 }
 
 function text_poster(myCase){
-    /*minimo = 20;
-    maximo = 230;*/
     if(post.texto.length<minimo){
         console.log("No se puede publicar algo de menos de "+minimo+" caracteres");
     }
@@ -50,8 +48,6 @@ function text_poster(myCase){
                 break;
         }    
         console.log("texto publicado");
-        post_preconfiguracion = "<body bgcolor='"+blog_config.color_fondo+"'>";
-        post_postconfiguracion = "</body>"
         post_publicacion = "<h5>"+post.fecha_de_publicacion+"</h5>";
         post_titulo = "<div align = 'center'> <h3>"+post.titulo+"</div></h3>";
         post_autor = "<p>Autor:<b>"+post.autor+"</b></p>";
@@ -62,24 +58,17 @@ function text_poster(myCase){
             post_tags = post_tags + tag_element+"//";
         });
         post_tags = post_tags + "</i></p>";
-        
         post_visitas = "<p><font size = '2'><u>Visitas:</u>"+post.vistas+"</font></p>";
-        post_final  = post_preconfiguracion+
-        post_publicacion+
+        
+        post_final=post_publicacion+
         post_titulo+post_autor+
         post_texto+
         post_categoria+
         post_tags+
-        post_visitas+
-        post_postconfiguracion;
-        
-        document.body.innerHTML=post_final;
-        
-        
-        /*
-        
-        document.body.innerHTML="<br><br><p>Tags: <i>";
-        */
+        post_visitas;
+        console.log(post_final);
+        return post_final;
+        //document.getElementById("post").innerHTML=post_final;
     }
 }
 
@@ -93,4 +82,5 @@ post.tags = ["lorem", "ipsum", "prueba","gatitos"];
 post.titulo="Lorem Ipsum";
 post.autor ="Pablo Soifer";
 
-text_poster("a");
+final_post = text_poster("a");
+document.getElementById("post").innerHTML = final_post;
