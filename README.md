@@ -2,6 +2,12 @@
 
 >Sistema de blog iniciado para el #100daysofcodechallenge
 
+## Day 4:
+
+1.Posteo a objeto con posteos multiples.
+2.Creado funcion que muestra titulos.
+
+
 ## Day 3:
 
 1.Hice convivir el html del sitio con el que traigo de javascript
