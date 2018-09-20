@@ -6,7 +6,7 @@
 
 1.Posteo a objeto con posteos multiples.
 2.Creado funcion que muestra titulos.
-
+3.Se comenzo a trabajar en mostrar los multiples posts. Ver como hacer que se sumen todos los posts y no solo el ultimo.
 
 ## Day 3:
 
