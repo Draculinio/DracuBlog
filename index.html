@@ -1,14 +1,18 @@
 <html>
     <head>
+            <script src="js/text_container.js"></script>
+            <script src ="js/blog_config.js"></script>
+            <script src ="js/index_body_load.js"></script>
             <title>Dracux's Blog</title>
     </head>
 
-    <body>
+    <body onload="index_load()">
         <div id="title" align="center"></div>
+        <h3>Ultimos Posts:</h3>
         <div id="posts_titles"></div>
         <a href = "posts.html">Ir a los posteos</a>
-        <script src ="js/blog_config.js"></script>
-        <script src="js/text_container.js"></script>
+        <a href = "post_creator.html">Crear nuevo post</a>
+        <footer style = "color:blue">By Pablo Soifer</footer>
         
     </body>
 </html>
