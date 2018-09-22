@@ -4,15 +4,22 @@
             <script src ="js/blog_config.js"></script>
             <script src ="js/index_body_load.js"></script>
             <title>Dracux's Blog</title>
+            <style>
+                .footer_blue { color:blue; }
+                .title {
+                    color:darkblue;
+                    font-size: 48px;
+                }
+            </style>
     </head>
 
     <body onload="index_load()">
-        <div id="title" align="center"></div>
+        <div id="title" align="center" class ="title"></div>
         <h3>Ultimos Posts:</h3>
         <div id="posts_titles"></div>
         <a href = "posts.html">Ir a los posteos</a>
         <a href = "post_creator.html">Crear nuevo post</a>
-        <footer style = "color:blue">By Pablo Soifer</footer>
+        <footer class = "footer_blue">By Pablo Soifer</footer>
         
     </body>
 </html>
