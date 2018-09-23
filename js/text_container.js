@@ -28,13 +28,25 @@ function modify_maximum(nuevo_maximo){
     console.log("Nuevo Maximo: "+ maximo);
 }
 
-function post_poster(){
-    if(post["texto"].length<minimo){
-        console.log("No se puede publicar algo de menos de "+minimo+" caracteres");
+
+/**
+ * Verifies that the text is between minimum and maximum variable
+ * @param {*} text The text that will be verified (generally posts text)
+ */
+function verify_length_of_post(text){
+    if(text.length<minimo){
+        console.log("I can't publish a post with less than  "+minimo+" characters");
+        return false;
     }
-    else if(post["texto"].length>maximo){
-        console.log("No se puede publicar algo de más de "+maximo+" caracteres");
-    }else{
+    if(text.length>maximo){
+        console.log("I can't publish a post more less than "+maximo+" characters");
+        return false;
+    }
+    return true;
+}
+
+function post_poster(){
+    if(verify_length_of_post(post["texto"])){
         post_publicacion = "<h5>"+post.fecha_de_publicacion+"</h5>";
         post_titulo = "<div align = 'center'> <h3>"+post.titulo+"</div></h3>";
         post_autor = "<p>Autor:<b>"+post.autor+"</b></p>";
@@ -46,7 +58,6 @@ function post_poster(){
         });
         post_tags = post_tags + "</i></p>";
         post_visitas = "<p><font size = '2'><u>Visitas:</u>"+post.vistas+"</font></p>";
-        
         post_final= post_publicacion+
         post_titulo+post_autor+
         post_texto+
@@ -57,24 +68,11 @@ function post_poster(){
     }
 }
 
-function posts_poster(myCase){
+function posts_poster(){
     post_final = "";
     Object.keys(posts_collection).forEach(
         function(key){
-            if(posts_collection[key]["texto"].length<minimo){
-                console.log("No se puede publicar algo de menos de "+minimo+" caracteres");
-            }
-            else if(posts_collection[key]["texto"].length>maximo){
-                console.log("No se puede publicar algo de más de "+maximo+" caracteres");
-            }else{
-                switch(myCase.toUpperCase ()){
-                    case "U":
-                        posts_collection[key]["texto"] = posts_collection[key]["texto"].toUpperCase ();
-                        break;
-                    case "L":
-                        posts_collection[key]["texto"] = posts_collection[key]["texto"].toLowerCase ();
-                        break;
-                }    
+            if(verify_length_of_post(posts_collection[key]["texto"])){
                 console.log("texto publicado");
                 post_publicacion = "<h5>"+posts_collection[key].fecha_de_publicacion+"</h5>";
                 post_titulo = "<div align = 'center'> <h3>"+posts_collection[key].titulo+"</div></h3>";

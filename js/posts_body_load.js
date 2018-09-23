@@ -1,4 +1,4 @@
 function body_load(){
-    posts_poster('a');
+    posts_poster();
     set_title();
 }
