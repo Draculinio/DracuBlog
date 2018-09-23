@@ -13,10 +13,20 @@
         </style>
     </head>
     <body>
-        <div align="center"><h1 class = "create_post">Crear Post</h1></div>
+        <div align="center"><h1 class = "create_post">Create Post</h1></div>
         <form>
             <label>Title: </label><input type="text" id="titulo"><br><br>
             <textarea id="postText" rows="20" cols="80"></textarea><br><br>
+            <label>Category: </label>
+            <select id="categorias">
+                <option value="Lorem Ipsum">
+                    Lorem Ipsum
+                </option>
+                <option value="Programming">
+                    Programming
+                </option>
+            </select><br><br>
+            <label>Tags: </label><input type="text" id="tags"><br><br>
             <input type="submit" value="Submit Post" name="submit">
         </form>
     </body>

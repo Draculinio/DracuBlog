@@ -1,5 +1,3 @@
-//import posts_collection from 'post_object.js';
-
 minimo = 1;
 maximo = 80000;
 
@@ -45,26 +43,39 @@ function verify_length_of_post(text){
     return true;
 }
 
+/**
+ * Gets the html code with post text
+ * @param {*} publication_date 
+ * @param {*} title 
+ * @param {*} author 
+ * @param {*} text 
+ * @param {*} category 
+ * @param {*} tags 
+ * @param {*} visits 
+ */
+function get_post_HTML(publication_date,title,author,text,category,tags,visits){
+    post_publicacion = "<h5>"+publication_date+"</h5>";
+    post_titulo = "<div align = 'center'> <h3>"+title+"</div></h3>";
+    post_autor = "<p>Autor:<b>"+author+"</b></p>";
+    post_texto = "<p>"+text+"</p>";
+    post_categoria = "<p>CATEGORIA: <b>"+category+"</b></p>";
+    post_tags = "<p><b>Tags:</b><i>";
+    tags.forEach(tag_element => {
+        post_tags = post_tags + tag_element+"//";
+    });
+    post_tags = post_tags + "</i></p>";
+    post_visitas = "<p><font size = '2'><u>Visitas:</u>"+visits+"</font></p>";
+    return post_publicacion+
+    post_titulo+post_autor+
+    post_texto+
+    post_categoria+
+    post_tags+
+    post_visitas;
+}
+
 function post_poster(){
     if(verify_length_of_post(post["texto"])){
-        post_publicacion = "<h5>"+post.fecha_de_publicacion+"</h5>";
-        post_titulo = "<div align = 'center'> <h3>"+post.titulo+"</div></h3>";
-        post_autor = "<p>Autor:<b>"+post.autor+"</b></p>";
-        post_texto = "<p>"+post.texto+"</p>";
-        post_categoria = "<p>CATEGORIA: <b>"+post.categoria+"</b></p>";
-        post_tags = "<p><b>Tags:</b><i>";
-        post.tags.forEach(tag_element => {
-            post_tags = post_tags + tag_element+"//";
-        });
-        post_tags = post_tags + "</i></p>";
-        post_visitas = "<p><font size = '2'><u>Visitas:</u>"+post.vistas+"</font></p>";
-        post_final= post_publicacion+
-        post_titulo+post_autor+
-        post_texto+
-        post_categoria+
-        post_tags+
-        post_visitas;
-        document.getElementById("post").innerHTML=post_final;
+        document.getElementById("post").innerHTML=get_post_HTML(post.fecha_de_publicacion,post.titulo,post.autor,post.texto,post.categoria,post.tags,post.visitas);
     }
 }
 
@@ -73,29 +84,9 @@ function posts_poster(){
     Object.keys(posts_collection).forEach(
         function(key){
             if(verify_length_of_post(posts_collection[key]["texto"])){
-                console.log("texto publicado");
-                post_publicacion = "<h5>"+posts_collection[key].fecha_de_publicacion+"</h5>";
-                post_titulo = "<div align = 'center'> <h3>"+posts_collection[key].titulo+"</div></h3>";
-                post_autor = "<p>Autor:<b>"+posts_collection[key].autor+"</b></p>";
-                post_texto = "<p>"+posts_collection[key].texto+"</p>";
-                post_categoria = "<p>CATEGORIA: <b>"+posts_collection[key].categoria+"</b></p>";
-                post_tags = "<p><b>Tags:</b><i>";
-                posts_collection[key].tags.forEach(tag_element => {
-                    post_tags = post_tags + tag_element+"//";
-                });
-                post_tags = post_tags + "</i></p>";
-                post_visitas = "<p><font size = '2'><u>Visitas:</u>"+posts_collection[key].vistas+"</font></p>";
-        
-                post_final= post_final+
-                post_publicacion+
-                post_titulo+post_autor+
-                post_texto+
-                post_categoria+
-                post_tags+
-                post_visitas;
-                
+                post_final = post_final+
+                get_post_HTML(posts_collection[key].fecha_de_publicacion,posts_collection[key].titulo,posts_collection[key].autor,posts_collection[key].texto,posts_collection[key].categoria,posts_collection[key].tags,posts_collection[key].vistas);
             }
-            
         }
     );
     document.getElementById("post").innerHTML=post_final;

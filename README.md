@@ -2,6 +2,16 @@
 
 >Sistema de blog iniciado para el #100daysofcodechallenge
 
+## Day 7:
+
+1. Refactor completo de posteos y su HTML
+
+2. Armado select de categorias
+
+3. Armado sitio de login de admin (Solo un poco de HTML)
+
+
+
 ## Day 6:
 
 1. Cada titulo de post del index tiene un link que lleva a post.html y manda una variable (a ser recuperada en el futuro).
