@@ -1,20 +1,31 @@
 <html>
     <head>
-        
         <script src ="js/text_container.js"></script>
         <script src ="js/blog_config.js"></script>
         <script src ="js/post_body_load.js"></script>
+        <link rel="stylesheet" href="css/forms.css">
         <title>Dracux's Blog</title>
         
     </head>
     <body onload="body_load()">
+        <a href="index.html">Go back to index</a>
         <div align="center" id="title"></div>
         <br>
         <br>
         <div id="post">
 
         </div>
-        <a href="index.html">Volver al índice</a>
+        <br><hr><br>
+        <h3>Post your comment</h3><br>
+        <form name="comments" id="comments">
+            <label>Name: </label>
+            <input type="text" id="name" name="name" length="20" size="20" class="form_inputs">
+            <br><br>
+            <label>Comment: </label>
+            <textarea id="comment_text" rows="5" cols="20" class="form_inputs"></textarea>
+            <br><br>
+            <input type="submit" value="Post Comment" id="post_comment"
+        </form>
     </body>
 
 </html>

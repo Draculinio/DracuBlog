@@ -2,6 +2,12 @@
 
 >Sistema de blog iniciado para el #100daysofcodechallenge
 
+## Day 8:
+
+1. Creado form para post de comentarios.
+
+2. Sacados los css de los html para ponerlos en su propia estructura.
+
 ## Day 7:
 
 1. Refactor completo de posteos y su HTML

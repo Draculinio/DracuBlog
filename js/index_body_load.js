@@ -1,4 +1,5 @@
 function index_load(){
-    set_title();
+    get_complete_title();
     listar_titulos();
+    
 }

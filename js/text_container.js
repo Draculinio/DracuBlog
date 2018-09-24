@@ -9,6 +9,10 @@ var post = {
 
 }
 
+var comments_collection = {
+
+}
+
 function text_to_upper(text){
     return text.toUpperCase ();
 }
@@ -124,10 +128,16 @@ function create_new_post(id,text,publishing_date,tags,views,category,title,autho
     post["autor"]=author;
 }
 
+function create_new_comments(id,author,text,publishing_date,post_id){
+    comments_collection[id]={};
+    comments_collection[id]["author"]=author;
+    comments_collection[id]["text"]=text;
+    comment_collection[id]["publishing_date"]=publishing_date;
+    comment_collection[id]["post_id"]=post_id;
+}
 
 
 function listar_titulos(){
-    //Object.keys(posts_collection).forEach(key=>console.log(posts_collection[key]["titulo"]));
     final_list_of_titles = "<ul>";
     Object.keys(posts_collection).forEach(function(key){
         final_list_of_titles += "<li><a href='post.html?post_id="+key+"'>"+posts_collection[key]["titulo"]+"</a></li>";

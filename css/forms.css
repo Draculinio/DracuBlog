@@ -1,0 +1,16 @@
+.form_inputs {
+    border-color: blue;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+  }
+
+  label {
+    color : blue;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+form {
+    background-color: yellow;
+}
