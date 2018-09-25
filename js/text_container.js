@@ -128,14 +128,36 @@ function create_new_post(id,text,publishing_date,tags,views,category,title,autho
     post["autor"]=author;
 }
 
+/**
+ * For the comments collection object
+ * @param {*} id 
+ * @param {*} author 
+ * @param {*} text 
+ * @param {*} publishing_date 
+ * @param {*} post_id 
+ */
 function create_new_comments(id,author,text,publishing_date,post_id){
     comments_collection[id]={};
     comments_collection[id]["author"]=author;
     comments_collection[id]["text"]=text;
-    comment_collection[id]["publishing_date"]=publishing_date;
-    comment_collection[id]["post_id"]=post_id;
+    comments_collection[id]["publishing_date"]=publishing_date;
+    comments_collection[id]["post_id"]=post_id;
 }
 
+function post_comments_to_HTML(id){
+
+    //console.log(comments_collection)
+    final_comments_list = "";
+    Object.keys(posts_collection).forEach(function(key){
+        if(comments_collection[key]["post_id"]==id){
+            console.log(comments_collection[key])
+            title = "<p class='comment_title_class'>"+comments_collection[key]["author"]+"   posted on: "+comments_collection[key]["publishing_date"]+"</p>";
+            body = "<p class='comment_title_body'>"+comments_collection[key]["text"]+"</p>";
+            final_comments_list+=title+body;
+        }
+    });
+    document.getElementById("list_of_comments").innerHTML=final_comments_list;
+}
 
 function listar_titulos(){
     final_list_of_titles = "<ul>";
@@ -157,6 +179,11 @@ new_post_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi 
 new_post_tags = ["otro post","probando","una prueba"];
 create_new_posts("2",new_post_text,"20/09/2018",new_post_tags,"547","pruebas","Post de Pruebas","Pablo Soifer");
 
+//Creo nuevos comentarios
+create_new_comments(1,"Pepe Pepito","Muy bueno loco, muchas gracias","25/09/2018",1);
+create_new_comments(2,"Jorge Coquito","Gran Lorem Ipsum","25/09/2018",1);
 
+create_new_comments(3,"Jhon doe","The cat is under the table","25/09/2018",2);
+create_new_comments(4,"Natalia Natalia","Perfecto, muchas gracias","25/09/2018",2);
 
 

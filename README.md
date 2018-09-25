@@ -2,6 +2,10 @@
 
 >Sistema de blog iniciado para el #100daysofcodechallenge
 
+## Day 9:
+
+1. Se postean los comentarios por id en el sitio de posts.
+
 ## Day 8:
 
 1. Creado form para post de comentarios.
