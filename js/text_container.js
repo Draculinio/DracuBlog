@@ -58,7 +58,7 @@ function verify_length_of_post(text){
  * @param {*} visits 
  */
 function get_post_HTML(publication_date,title,author,text,category,tags,visits){
-    post_publicacion = "<h5>"+publication_date+"</h5>";
+    post_publicacion = "<h5 class='date_format'>"+publication_date+"</h5>";
     post_titulo = "<div align = 'center'> <h3>"+title+"</div></h3>";
     post_autor = "<p>Autor:<b>"+author+"</b></p>";
     post_texto = "<p>"+text+"</p>";
@@ -89,7 +89,8 @@ function posts_poster(){
         function(key){
             if(verify_length_of_post(posts_collection[key]["texto"])){
                 post_final = post_final+
-                get_post_HTML(posts_collection[key].fecha_de_publicacion,posts_collection[key].titulo,posts_collection[key].autor,posts_collection[key].texto,posts_collection[key].categoria,posts_collection[key].tags,posts_collection[key].vistas);
+                get_post_HTML(posts_collection[key].fecha_de_publicacion,posts_collection[key].titulo,posts_collection[key].autor,posts_collection[key].texto,posts_collection[key].categoria,posts_collection[key].tags,posts_collection[key].vistas)+
+                "<br><a href ='post.html?id="+key+"'>Go to Post</a>";
             }
         }
     );

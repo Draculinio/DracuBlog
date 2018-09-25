@@ -6,6 +6,16 @@
 
 1. Se postean los comentarios por id en el sitio de posts.
 
+2. Cada post en posts al final tiene un link a su post correspondiente (solo hace lo de mandar el id para el get, ver como manipular los get).
+
+3. Aplicados estilos al login de admin.
+
+4. Post de formulario de admin login va a admin.
+
+5. Creado css para cosas de los posts.
+
+6. Creado css en posts.css para manipular formato de la fecha de publicacion
+
 ## Day 8:
 
 1. Creado form para post de comentarios.
