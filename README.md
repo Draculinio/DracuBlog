@@ -2,6 +2,18 @@
 
 >Sistema de blog iniciado para el #100daysofcodechallenge
 
+## Day 10:
+
+1. Truncados textos a 300 caracteres en posts.html
+
+2. Creado objeto de autores (authors).
+
+3. Cambio de la propiedad autor de posts a ser un id.
+
+4. Ahora postea el nombre del autor referenciando el id de autor en el objeto post.
+
+5. Al autor del post se le pone una imagen redonda al lado.
+
 ## Day 9:
 
 1. Se postean los comentarios por id en el sitio de posts.
