@@ -2,6 +2,16 @@
 
 >Sistema de blog iniciado para el #100daysofcodechallenge
 
+## Day 11:
+
+1. Los posts pueden tener imagenes propias y se muestran en cada post.
+
+2. Algunas mejoras en la lectura del post
+
+3. En posts, si el post tiene imagen se muestra y sino no.
+
+4. js de posts, variables siendo cambiadas a ingles.
+
 ## Day 10:
 
 1. Truncados textos a 300 caracteres en posts.html

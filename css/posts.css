@@ -11,3 +11,14 @@
     border-style: solid;
     border-color: blue;
 }
+
+.main_image {
+    width : 300px;
+    height: 200px;
+}
+
+.post_border {
+    border-color : blue;
+    border-style: solid;
+    border-width : 2px;
+}

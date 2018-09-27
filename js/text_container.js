@@ -1,5 +1,5 @@
-minimo = 1;
-maximo = 80000;
+min_chars_x_post = 1;
+max_chars_x_post = 80000;
 
 var authors = {
 
@@ -26,12 +26,10 @@ function text_to_lower(text){
 }
 
 function modify_minimum(nuevo_minimo){
-    minimo=nuevo_minimo;
-    console.log("Nuevo Minimo: "+ minimo);
+    min_chars_x_post=nuevo_minimo;
 }
 function modify_maximum(nuevo_maximo){
-    maximo=nuevo_maximo;
-    console.log("Nuevo Maximo: "+ maximo);
+    max_chars_x_post=nuevo_maximo;
 }
 
 
@@ -40,12 +38,12 @@ function modify_maximum(nuevo_maximo){
  * @param {*} text The text that will be verified (generally posts text)
  */
 function verify_length_of_post(text){
-    if(text.length<minimo){
-        console.log("I can't publish a post with less than  "+minimo+" characters");
+    if(text.length<min_chars_x_post){
+        console.log("I can't publish a post with less than  "+min_chars_x_post+" characters");
         return false;
     }
-    if(text.length>maximo){
-        console.log("I can't publish a post more less than "+maximo+" characters");
+    if(text.length>max_chars_x_post){
+        console.log("I can't publish a post more less than "+max_chars_x_post+" characters");
         return false;
     }
     return true;
@@ -61,36 +59,47 @@ function verify_length_of_post(text){
  * @param {*} tags 
  * @param {*} visits 
  * @param {*} truncate "True or false for text truncate"
+ * @param {*} image "The post main image"
  */
-function get_post_HTML(publication_date,title,author_id,text,category,tags,visits,truncate){
-    post_publicacion = "<h5 class='date_format'>"+publication_date+"</h5>";
-    post_titulo = "<div align = 'center'> <h3>"+title+"</div></h3>";
-    post_autor = "<p>Author: <b>"+authors[author_id]["name"]+"</b><img src='images/"+authors[author_id]["image"]+"' class='author_pic'></p>";
+function get_post_HTML(publication_date,title,author_id,text,category,tags,visits,truncate,image){
+    post_publish_date = "<h5 class='date_format'>"+publication_date+"</h5>";
+    post_title = "<div align = 'center'> <h3>"+title+"</h3></div>";
+    post_title_image = "";
+    if(image!=""){
+        post_title_image = "<div align='center'><img src = 'images/"+image+"' class='main_image'></div>";
+    }
+    post_author = "<p>Author: <b>"+authors[author_id]["name"]+"</b><img src='images/"+authors[author_id]["image"]+"' class='author_pic'></p>";
     if(truncate){
         if(text.length>300){
             text = text.substring(0,299);
             text+="..."
         }
     }
-    post_texto = "<p>"+text+"</p>";    
-    post_categoria = "<p>CATEGORIA: <b>"+category+"</b></p>";
+    post_text = "<div class='post_border'><p>"+text+"</p></div>";    
+    post_cathegory = "<p>CATEGORIA: <b>"+category+"</b></p>";
     post_tags = "<p><b>Tags:</b><i>";
     tags.forEach(tag_element => {
         post_tags = post_tags + tag_element+"//";
     });
     post_tags = post_tags + "</i></p>";
-    post_visitas = "<p><font size = '2'><u>Visitas:</u>"+visits+"</font></p>";
-    return post_publicacion+
-    post_titulo+post_autor+
-    post_texto+
-    post_categoria+
+    post_visits = "<p><font size = '2'><u>Visitas:</u>"+visits+"</font></p>";
+    return post_publish_date+
+    post_title+
+    post_title_image+
+    post_author+
+    post_text+
+    post_cathegory+
     post_tags+
-    post_visitas;
+    post_visits;
 }
 
 function post_poster(){
-    if(verify_length_of_post(post["texto"])){
-        document.getElementById("post").innerHTML=get_post_HTML(post.fecha_de_publicacion,post.titulo,post.autor,post.texto,post.categoria,post.tags,post.visitas,false);
+    if(verify_length_of_post(post["text"])){
+        image = ""
+        if(post.hasOwnProperty("image")){
+            image = post["image"];
+        }
+        document.getElementById("post").innerHTML=get_post_HTML(post.publishing_date,post.title,post.author,post.text,post.cathegory,post.tags,post.visitas,false,image);
     }
 }
 
@@ -98,9 +107,13 @@ function posts_poster(){
     post_final = "";
     Object.keys(posts_collection).forEach(
         function(key){
-            if(verify_length_of_post(posts_collection[key]["texto"])){
+            if(verify_length_of_post(posts_collection[key]["text"])){
+                image = ""
+                if(posts_collection[key].hasOwnProperty("image")){
+                    image = post["image"];
+                }
                 post_final = post_final+
-                get_post_HTML(posts_collection[key].fecha_de_publicacion,posts_collection[key].titulo,posts_collection[key].autor,posts_collection[key].texto,posts_collection[key].categoria,posts_collection[key].tags,posts_collection[key].vistas,true)+
+                get_post_HTML(posts_collection[key].publishing_date,posts_collection[key].title,posts_collection[key].author,posts_collection[key].text,posts_collection[key].cathegory,posts_collection[key].tags,posts_collection[key].views,true,image)+
                 "<br><a href ='post.html?id="+key+"'>Go to Post</a>";
             }
         }
@@ -119,25 +132,34 @@ function posts_poster(){
  * @param {*} title title of the post
  * @param {*} author author of the post
  */
-function create_new_posts(id,text,publishing_date,tags,views,category,title,author){
+
+//TODO: REFACTORIZAR!!!!!!!! SON IGUALESSSSSSSSSSSSSS
+function create_new_posts(id,text,publishing_date,tags,views,category,title,author,image){
     posts_collection[id]={};
-    posts_collection[id]["texto"]=text;
-    posts_collection[id]["fecha_de_publicacion"]=publishing_date;
+    posts_collection[id]["text"]=text;
+    posts_collection[id]["publishing_date"]=publishing_date;
     posts_collection[id]["tags"]=tags;
-    posts_collection[id]["vistas"]=views;
-    posts_collection[id]["categoria"]=category;
-    posts_collection[id]["titulo"]=title;
-    posts_collection[id]["autor"]=author;
+    posts_collection[id]["views"]=views;
+    posts_collection[id]["cathegory"]=category;
+    posts_collection[id]["title"]=title;
+    posts_collection[id]["author"]=author;
+    if(image!=""){
+        posts_collection[id]["image"]=image;
+    }
+    console.log(posts_collection)
 }
 
-function create_new_post(id,text,publishing_date,tags,views,category,title,author){
-    post["texto"]=text;
-    post["fecha_de_publicacion"]=publishing_date;
+function create_new_post(id,text,publishing_date,tags,views,category,title,author,image){
+    post["text"]=text;
+    post["publishing_date"]=publishing_date;
     post["tags"]=tags;
-    post["vistas"]=views;
-    post["categoria"]=category;
-    post["titulo"]=title;
-    post["autor"]=author;
+    post["views"]=views;
+    post["cathegory"]=category;
+    post["title"]=title;
+    post["author"]=author;
+    if(image!=""){
+        post["image"]=image;
+    }
 }
 
 /**
@@ -172,7 +194,7 @@ function post_comments_to_HTML(id){
 function listar_titulos(){
     final_list_of_titles = "<ul>";
     Object.keys(posts_collection).forEach(function(key){
-        final_list_of_titles += "<li><a href='post.html?post_id="+key+"'>"+posts_collection[key]["titulo"]+"</a></li>";
+        final_list_of_titles += "<li><a href='post.html?post_id="+key+"'>"+posts_collection[key]["title"]+"</a></li>";
     });
     document.getElementById("posts_titles").innerHTML=final_list_of_titles+"</ul>";
 }
@@ -187,14 +209,14 @@ function author_creator(id,name,image,user,password){
 
 
 //Posteo con nueva forma de postear
-new_post_text = "<div align='center'><img src='images/auto-union.png' width='100' height='100'></div><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi felis dolor, interdum quis erat sed, rutrum molestie orci. Proin tristique tellus rutrum purus pulvinar sagittis. Mauris et mauris commodo, imperdiet augue vel, efficitur erat. Integer eleifend eleifend augue in pretium. Duis pretium justo posuere erat aliquam ullamcorper. Donec maximus ultricies posuere. Donec quis sem massa. Curabitur laoreet libero magna, in blandit libero tincidunt vitae. <br> Sed velit neque, blandit et vehicula sed, sodales at est. Nullam ut quam id eros tristique vestibulum quis nec mauris. Donec non laoreet ex. Nam est nulla, ultricies vel risus eu, fringilla commodo lacus. Proin consequat efficitur turpis, eget varius urna posuere vel. Aliquam rutrum imperdiet ex, ut vestibulum dolor sodales vitae. Suspendisse potenti. Integer interdum bibendum ullamcorper. Mauris sit amet hendrerit nisl, quis volutpat elit. Fusce tristique, libero sed elementum accumsan, urna urna consectetur turpis, eget vestibulum orci quam ut nisi. Ut blandit aliquet lectus eget tristique.<br>Nullam varius augue in egestas lobortis. Curabitur sollicitudin ligula eu lorem tempus lobortis. Vivamus ac mi a ante ultrices molestie. Cras ut ex ullamcorper, tempus tortor id, fermentum tellus. Ut pellentesque ullamcorper imperdiet. Pellentesque accumsan pulvinar gravida. Aliquam tortor ante, laoreet quis tempus pulvinar, tincidunt nec sapien. Vestibulum purus lectus, hendrerit vehicula mollis a, bibendum et risus.<br>Praesent at nibh at turpis consequat egestas a a libero. Maecenas feugiat feugiat nibh at scelerisque. Nam lacinia sollicitudin elit, ut laoreet orci vulputate eu. Curabitur lorem sem, convallis eget vulputate id, tincidunt non velit. Pellentesque interdum iaculis odio, at maximus ligula accumsan in. Aliquam felis turpis, porta at tincidunt quis, mattis in velit. Cras eget ullamcorper metus. Morbi fringilla gravida elit.<br>Nulla facilisi. Pellentesque porta dapibus laoreet. Donec vel finibus eros, eget venenatis nunc. Nunc molestie ornare arcu, nec posuere mi ultrices ut. Nunc luctus pulvinar leo scelerisque commodo. Mauris id hendrerit tortor, in tincidunt mi. Duis sed justo sit amet ligula sagittis auctor sit amet at odio. Nunc condimentum gravida augue, tempus feugiat ante vehicula consequat. Suspendisse et nibh tempus, vulputate nisl nec, feugiat velit. Mauris porttitor eget ante vel tincidunt. Nunc eget lorem sit amet tortor luctus pulvinar eget ac nisi. Vestibulum vehicula ex in tellus tempor, eu tristique ligula dictum. Mauris venenatis lacus leo, quis porta urna finibus sed.";
+new_post_text = "<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi felis dolor, interdum quis erat sed, rutrum molestie orci. Proin tristique tellus rutrum purus pulvinar sagittis. Mauris et mauris commodo, imperdiet augue vel, efficitur erat. Integer eleifend eleifend augue in pretium. Duis pretium justo posuere erat aliquam ullamcorper. Donec maximus ultricies posuere. Donec quis sem massa. Curabitur laoreet libero magna, in blandit libero tincidunt vitae. <br> Sed velit neque, blandit et vehicula sed, sodales at est. Nullam ut quam id eros tristique vestibulum quis nec mauris. Donec non laoreet ex. Nam est nulla, ultricies vel risus eu, fringilla commodo lacus. Proin consequat efficitur turpis, eget varius urna posuere vel. Aliquam rutrum imperdiet ex, ut vestibulum dolor sodales vitae. Suspendisse potenti. Integer interdum bibendum ullamcorper. Mauris sit amet hendrerit nisl, quis volutpat elit. Fusce tristique, libero sed elementum accumsan, urna urna consectetur turpis, eget vestibulum orci quam ut nisi. Ut blandit aliquet lectus eget tristique.<br>Nullam varius augue in egestas lobortis. Curabitur sollicitudin ligula eu lorem tempus lobortis. Vivamus ac mi a ante ultrices molestie. Cras ut ex ullamcorper, tempus tortor id, fermentum tellus. Ut pellentesque ullamcorper imperdiet. Pellentesque accumsan pulvinar gravida. Aliquam tortor ante, laoreet quis tempus pulvinar, tincidunt nec sapien. Vestibulum purus lectus, hendrerit vehicula mollis a, bibendum et risus.<br>Praesent at nibh at turpis consequat egestas a a libero. Maecenas feugiat feugiat nibh at scelerisque. Nam lacinia sollicitudin elit, ut laoreet orci vulputate eu. Curabitur lorem sem, convallis eget vulputate id, tincidunt non velit. Pellentesque interdum iaculis odio, at maximus ligula accumsan in. Aliquam felis turpis, porta at tincidunt quis, mattis in velit. Cras eget ullamcorper metus. Morbi fringilla gravida elit.<br>Nulla facilisi. Pellentesque porta dapibus laoreet. Donec vel finibus eros, eget venenatis nunc. Nunc molestie ornare arcu, nec posuere mi ultrices ut. Nunc luctus pulvinar leo scelerisque commodo. Mauris id hendrerit tortor, in tincidunt mi. Duis sed justo sit amet ligula sagittis auctor sit amet at odio. Nunc condimentum gravida augue, tempus feugiat ante vehicula consequat. Suspendisse et nibh tempus, vulputate nisl nec, feugiat velit. Mauris porttitor eget ante vel tincidunt. Nunc eget lorem sit amet tortor luctus pulvinar eget ac nisi. Vestibulum vehicula ex in tellus tempor, eu tristique ligula dictum. Mauris venenatis lacus leo, quis porta urna finibus sed.<div align='center'><img src='images/auto-union.png' width='100' height='100'></div>";
 new_post_tags = ["lorem", "ipsum", "prueba","gatitos"];
-create_new_posts("1",new_post_text,"19/09/2018",new_post_tags,"123","Lorem Ipsum","Lorem Ipsum Post",1);
+create_new_posts("1",new_post_text,"19/09/2018",new_post_tags,"123","Lorem Ipsum","Lorem Ipsum Post",1,"lorem_ipsum.jpg");
 //Hardcodeo para probar el single post
-create_new_post("1",new_post_text,"19/09/2018",new_post_tags,"123","Lorem Ipsum","Lorem Ipsum Post",1);
+create_new_post("1",new_post_text,"19/09/2018",new_post_tags,"123","Lorem Ipsum","Lorem Ipsum Post",1,"lorem_ipsum.jpg");
 new_post_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi felis dolor, interdum quis erat sed, rutrum molestie orci. Proin tristique tellus rutrum purus pulvinar sagittis. Mauris et mauris commodo, imperdiet augue vel, efficitur erat. Integer eleifend eleifend augue in pretium. Duis pretium justo posuere erat aliquam ullamcorper. Donec maximus ultricies posuere. Donec quis sem massa. Curabitur laoreet libero magna, in blandit libero tincidunt vitae. <br> Sed velit neque, blandit et vehicula sed, sodales at est. Nullam ut quam id eros tristique vestibulum quis nec mauris. Donec non laoreet ex. Nam est nulla, ultricies vel risus eu, fringilla commodo lacus. Proin consequat efficitur turpis, eget varius urna posuere vel. Aliquam rutrum imperdiet ex, ut vestibulum dolor sodales vitae. Suspendisse potenti. Integer interdum bibendum ullamcorper. Mauris sit amet hendrerit nisl, quis volutpat elit. Fusce tristique, libero sed elementum accumsan, urna urna consectetur turpis, eget vestibulum orci quam ut nisi. Ut blandit aliquet lectus eget tristique.<br>Nullam varius augue in egestas lobortis. Curabitur sollicitudin ligula eu lorem tempus lobortis. Vivamus ac mi a ante ultrices molestie. Cras ut ex ullamcorper, tempus tortor id, fermentum tellus. Ut pellentesque ullamcorper imperdiet. Pellentesque accumsan pulvinar gravida. Aliquam tortor ante, laoreet quis tempus pulvinar, tincidunt nec sapien. Vestibulum purus lectus, hendrerit vehicula mollis a, bibendum et risus.<br>Praesent at nibh at turpis consequat egestas a a libero. Maecenas feugiat feugiat nibh at scelerisque. Nam lacinia sollicitudin elit, ut laoreet orci vulputate eu. Curabitur lorem sem, convallis eget vulputate id, tincidunt non velit. Pellentesque interdum iaculis odio, at maximus ligula accumsan in. Aliquam felis turpis, porta at tincidunt quis, mattis in velit. Cras eget ullamcorper metus. Morbi fringilla gravida elit.<br>Nulla facilisi. Pellentesque porta dapibus laoreet. Donec vel finibus eros, eget venenatis nunc. Nunc molestie ornare arcu, nec posuere mi ultrices ut. Nunc luctus pulvinar leo scelerisque commodo. Mauris id hendrerit tortor, in tincidunt mi. Duis sed justo sit amet ligula sagittis auctor sit amet at odio. Nunc condimentum gravida augue, tempus feugiat ante vehicula consequat. Suspendisse et nibh tempus, vulputate nisl nec, feugiat velit. Mauris porttitor eget ante vel tincidunt. Nunc eget lorem sit amet tortor luctus pulvinar eget ac nisi. Vestibulum vehicula ex in tellus tempor, eu tristique ligula dictum. Mauris venenatis lacus leo, quis porta urna finibus sed.";
 new_post_tags = ["otro post","probando","una prueba"];
-create_new_posts("2",new_post_text,"20/09/2018",new_post_tags,"547","pruebas","Post de Pruebas",1);
+create_new_posts("2",new_post_text,"20/09/2018",new_post_tags,"547","pruebas","Post de Pruebas",1,"");
 
 //Creo nuevos comentarios
 create_new_comments(1,"Pepe Pepito","Muy bueno loco, muchas gracias","25/09/2018",1);
@@ -203,5 +225,5 @@ create_new_comments(2,"Jorge Coquito","Gran Lorem Ipsum","25/09/2018",1);
 create_new_comments(3,"Jhon doe","The cat is under the table","25/09/2018",2);
 create_new_comments(4,"Natalia Natalia","Perfecto, muchas gracias","25/09/2018",2);
 
-//Creo nuevo autor
+//Creo nuevo author
 author_creator(1,"Pablo Soifer","avatar.jpg","Draculinio","123456");
