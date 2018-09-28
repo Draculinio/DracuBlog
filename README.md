@@ -8,6 +8,8 @@
 
 2. FRACASE usando exports e imports de la clase.
 
+3. Centrado con CSS el label de comentario.
+
 ## Day 11:
 
 1. Los posts pueden tener imagenes propias y se muestran en cada post.

@@ -16,15 +16,16 @@
         <div id="post"></div>
         <br><hr><br>
         <h3>Post your comment</h3><br>
+        <div class="container_form">
         <form name="comments" id="comments">
-            <label>Name: </label>
-            <input type="text" id="name" name="name" length="20" size="20" class="form_inputs">
-            <br><br>
-            <label>Comment: </label>
-            <textarea id="comment_text" rows="5" cols="20" class="form_inputs"></textarea>
+            <div class = "containter_form_label"><label>Name: </label></div>
+            <div class = "containter_form_label"><input type="text" id="name" name="name" length="20" size="20" class="form_inputs containter_form_label"></div><br>
+            <div class = "containter_form_label"><label>Comment: </label></div>
+            <div class = "containter_form_label"><textarea id="comment_text" rows="5" cols="20" class="form_inputs"></textarea></div>
             <br><br>
             <input type="submit" value="Post Comment" id="post_comment">
         </form>
+    </div>
         <div id="list_of_comments"></div>
     </body>
 
