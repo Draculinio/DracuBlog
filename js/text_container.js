@@ -1,5 +1,27 @@
-min_chars_x_post = 1;
-max_chars_x_post = 80000;
+//import * as size_of_the_post from 'post_sizer.js';
+
+class post_Sizes{
+    constructor(){
+        this.min_chars_x_post = 1;
+        this.max_chars_x_post = 80000;
+    }
+    get min_chars(){
+        return this.min_chars_x_post;
+    }
+
+    set min_chars(minimum){
+        this.min_chars_x_post = minimum;
+    }
+
+    get max_chars(){
+        return this.max_chars_x_post;
+    }
+
+    set max_chars(maximum){
+        this.max_chars_x_post = maximum;
+    }
+}
+
 
 var authors = {
 
@@ -38,11 +60,12 @@ function modify_maximum(nuevo_maximo){
  * @param {*} text The text that will be verified (generally posts text)
  */
 function verify_length_of_post(text){
-    if(text.length<min_chars_x_post){
+    const post_size = new post_Sizes();
+    if(text.length<post_size.min_chars){
         console.log("I can't publish a post with less than  "+min_chars_x_post+" characters");
         return false;
     }
-    if(text.length>max_chars_x_post){
+    if(text.length>post_size.max_chars){
         console.log("I can't publish a post more less than "+max_chars_x_post+" characters");
         return false;
     }
@@ -208,6 +231,10 @@ function author_creator(id,name,image,user,password){
 }
 
 
+//Probar maximo y minimo
+const max_and_min_test = new post_Sizes();
+max_and_min_test.max_chars = 100000;
+max_and_min_test.min_chars = 0;
 //Posteo con nueva forma de postear
 new_post_text = "<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi felis dolor, interdum quis erat sed, rutrum molestie orci. Proin tristique tellus rutrum purus pulvinar sagittis. Mauris et mauris commodo, imperdiet augue vel, efficitur erat. Integer eleifend eleifend augue in pretium. Duis pretium justo posuere erat aliquam ullamcorper. Donec maximus ultricies posuere. Donec quis sem massa. Curabitur laoreet libero magna, in blandit libero tincidunt vitae. <br> Sed velit neque, blandit et vehicula sed, sodales at est. Nullam ut quam id eros tristique vestibulum quis nec mauris. Donec non laoreet ex. Nam est nulla, ultricies vel risus eu, fringilla commodo lacus. Proin consequat efficitur turpis, eget varius urna posuere vel. Aliquam rutrum imperdiet ex, ut vestibulum dolor sodales vitae. Suspendisse potenti. Integer interdum bibendum ullamcorper. Mauris sit amet hendrerit nisl, quis volutpat elit. Fusce tristique, libero sed elementum accumsan, urna urna consectetur turpis, eget vestibulum orci quam ut nisi. Ut blandit aliquet lectus eget tristique.<br>Nullam varius augue in egestas lobortis. Curabitur sollicitudin ligula eu lorem tempus lobortis. Vivamus ac mi a ante ultrices molestie. Cras ut ex ullamcorper, tempus tortor id, fermentum tellus. Ut pellentesque ullamcorper imperdiet. Pellentesque accumsan pulvinar gravida. Aliquam tortor ante, laoreet quis tempus pulvinar, tincidunt nec sapien. Vestibulum purus lectus, hendrerit vehicula mollis a, bibendum et risus.<br>Praesent at nibh at turpis consequat egestas a a libero. Maecenas feugiat feugiat nibh at scelerisque. Nam lacinia sollicitudin elit, ut laoreet orci vulputate eu. Curabitur lorem sem, convallis eget vulputate id, tincidunt non velit. Pellentesque interdum iaculis odio, at maximus ligula accumsan in. Aliquam felis turpis, porta at tincidunt quis, mattis in velit. Cras eget ullamcorper metus. Morbi fringilla gravida elit.<br>Nulla facilisi. Pellentesque porta dapibus laoreet. Donec vel finibus eros, eget venenatis nunc. Nunc molestie ornare arcu, nec posuere mi ultrices ut. Nunc luctus pulvinar leo scelerisque commodo. Mauris id hendrerit tortor, in tincidunt mi. Duis sed justo sit amet ligula sagittis auctor sit amet at odio. Nunc condimentum gravida augue, tempus feugiat ante vehicula consequat. Suspendisse et nibh tempus, vulputate nisl nec, feugiat velit. Mauris porttitor eget ante vel tincidunt. Nunc eget lorem sit amet tortor luctus pulvinar eget ac nisi. Vestibulum vehicula ex in tellus tempor, eu tristique ligula dictum. Mauris venenatis lacus leo, quis porta urna finibus sed.<div align='center'><img src='images/auto-union.png' width='100' height='100'></div>";
 new_post_tags = ["lorem", "ipsum", "prueba","gatitos"];

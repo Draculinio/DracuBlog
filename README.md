@@ -2,6 +2,12 @@
 
 >Sistema de blog iniciado para el #100daysofcodechallenge
 
+## Day 12: 
+
+1. Creada clase tipo ES6 para maximo y minimo de caracteres.
+
+2. FRACASE usando exports e imports de la clase.
+
 ## Day 11:
 
 1. Los posts pueden tener imagenes propias y se muestran en cada post.
