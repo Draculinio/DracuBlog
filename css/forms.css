@@ -11,16 +11,6 @@
     font-family: sans-serif;
   }
 
-
-.containter_form {
-    display : table;
-    border-collapse : collapse;
-    width:90%;
-    background-color: yellow;
-    border-width: 2px;
-    border-style: solid;
-}
-
 .containter_form_label {
     display: table-cell;
     vertical-align: middle;

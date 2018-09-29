@@ -1,6 +1,6 @@
 //import * as size_of_the_post from 'post_sizer.js';
 
-class post_Sizes{
+class post_configuration{
     constructor(){
         this.min_chars_x_post = 1;
         this.max_chars_x_post = 80000;
@@ -22,9 +22,53 @@ class post_Sizes{
     }
 }
 
+class authors{
+    constructor(id,name,picture,username,password){
+        this.id=id;
+        this.name=name;
+        this.picture=picture;
+        this.username=username;
+        this.password=password;
+    }
+    get author_id(){
+        return this.id;
+    }
 
-var authors = {
+    set author_id(id){
+        this.id=id;
+    }
 
+    get author_name(){
+        return this.name;
+    }
+
+    set author_name(name){
+        this.name=name;
+    }
+
+    get author_picture(){
+        return this.picture;
+    }
+
+    set author_picture(picture){
+        this.picture=picture;
+    }
+
+    get author_username(){
+        return this.username;
+    }
+
+    set author_username(username){
+        this.username=username;
+    }
+
+    get author_password(){
+        return this.password;
+    }
+
+    set author_password(password){
+        this.password=password;
+    }
 }
 
 var posts_collection = {
@@ -60,7 +104,7 @@ function modify_maximum(nuevo_maximo){
  * @param {*} text The text that will be verified (generally posts text)
  */
 function verify_length_of_post(text){
-    const post_size = new post_Sizes();
+    const post_size = new post_configuration();
     if(text.length<post_size.min_chars){
         console.log("I can't publish a post with less than  "+min_chars_x_post+" characters");
         return false;
@@ -91,7 +135,8 @@ function get_post_HTML(publication_date,title,author_id,text,category,tags,visit
     if(image!=""){
         post_title_image = "<div align='center'><img src = 'images/"+image+"' class='main_image'></div>";
     }
-    post_author = "<p>Author: <b>"+authors[author_id]["name"]+"</b><img src='images/"+authors[author_id]["image"]+"' class='author_pic'></p>";
+    //El author es unico ahora, pero luego tendra que buscarse por ID.
+    post_author = "<p>Author: <b>"+author_pablo.author_name+"</b><img src='images/"+author_pablo.author_picture+"' class='author_pic'></p>";
     if(truncate){
         if(text.length>300){
             text = text.substring(0,299);
@@ -232,9 +277,11 @@ function author_creator(id,name,image,user,password){
 
 
 //Probar maximo y minimo
-const max_and_min_test = new post_Sizes();
+const max_and_min_test = new post_configuration();
 max_and_min_test.max_chars = 100000;
 max_and_min_test.min_chars = 0;
+//Creo nuevo author
+const author_pablo = new authors(1,"Pablo Soifer","avatar.jpg","Draculinio","123456");
 //Posteo con nueva forma de postear
 new_post_text = "<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi felis dolor, interdum quis erat sed, rutrum molestie orci. Proin tristique tellus rutrum purus pulvinar sagittis. Mauris et mauris commodo, imperdiet augue vel, efficitur erat. Integer eleifend eleifend augue in pretium. Duis pretium justo posuere erat aliquam ullamcorper. Donec maximus ultricies posuere. Donec quis sem massa. Curabitur laoreet libero magna, in blandit libero tincidunt vitae. <br> Sed velit neque, blandit et vehicula sed, sodales at est. Nullam ut quam id eros tristique vestibulum quis nec mauris. Donec non laoreet ex. Nam est nulla, ultricies vel risus eu, fringilla commodo lacus. Proin consequat efficitur turpis, eget varius urna posuere vel. Aliquam rutrum imperdiet ex, ut vestibulum dolor sodales vitae. Suspendisse potenti. Integer interdum bibendum ullamcorper. Mauris sit amet hendrerit nisl, quis volutpat elit. Fusce tristique, libero sed elementum accumsan, urna urna consectetur turpis, eget vestibulum orci quam ut nisi. Ut blandit aliquet lectus eget tristique.<br>Nullam varius augue in egestas lobortis. Curabitur sollicitudin ligula eu lorem tempus lobortis. Vivamus ac mi a ante ultrices molestie. Cras ut ex ullamcorper, tempus tortor id, fermentum tellus. Ut pellentesque ullamcorper imperdiet. Pellentesque accumsan pulvinar gravida. Aliquam tortor ante, laoreet quis tempus pulvinar, tincidunt nec sapien. Vestibulum purus lectus, hendrerit vehicula mollis a, bibendum et risus.<br>Praesent at nibh at turpis consequat egestas a a libero. Maecenas feugiat feugiat nibh at scelerisque. Nam lacinia sollicitudin elit, ut laoreet orci vulputate eu. Curabitur lorem sem, convallis eget vulputate id, tincidunt non velit. Pellentesque interdum iaculis odio, at maximus ligula accumsan in. Aliquam felis turpis, porta at tincidunt quis, mattis in velit. Cras eget ullamcorper metus. Morbi fringilla gravida elit.<br>Nulla facilisi. Pellentesque porta dapibus laoreet. Donec vel finibus eros, eget venenatis nunc. Nunc molestie ornare arcu, nec posuere mi ultrices ut. Nunc luctus pulvinar leo scelerisque commodo. Mauris id hendrerit tortor, in tincidunt mi. Duis sed justo sit amet ligula sagittis auctor sit amet at odio. Nunc condimentum gravida augue, tempus feugiat ante vehicula consequat. Suspendisse et nibh tempus, vulputate nisl nec, feugiat velit. Mauris porttitor eget ante vel tincidunt. Nunc eget lorem sit amet tortor luctus pulvinar eget ac nisi. Vestibulum vehicula ex in tellus tempor, eu tristique ligula dictum. Mauris venenatis lacus leo, quis porta urna finibus sed.<div align='center'><img src='images/auto-union.png' width='100' height='100'></div>";
 new_post_tags = ["lorem", "ipsum", "prueba","gatitos"];
@@ -252,5 +299,3 @@ create_new_comments(2,"Jorge Coquito","Gran Lorem Ipsum","25/09/2018",1);
 create_new_comments(3,"Jhon doe","The cat is under the table","25/09/2018",2);
 create_new_comments(4,"Natalia Natalia","Perfecto, muchas gracias","25/09/2018",2);
 
-//Creo nuevo author
-author_creator(1,"Pablo Soifer","avatar.jpg","Draculinio","123456");

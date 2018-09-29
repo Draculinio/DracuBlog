@@ -2,6 +2,10 @@
 
 >Sistema de blog iniciado para el #100daysofcodechallenge
 
+## Day 13:
+
+1. Creada clase authors de acuerdo a ES6
+
 ## Day 12: 
 
 1. Creada clase tipo ES6 para maximo y minimo de caracteres.
