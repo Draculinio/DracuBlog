@@ -4,7 +4,19 @@
 
 ## Day 13:
 
-1. Creada clase authors de acuerdo a ES6
+1. Creada clase authors de acuerdo a ES6.
+
+2. Implementada la clase authors
+
+3. Investigando JSON en javascript.
+
+4. Retrabajando el form de comentarios.
+
+5. La clase de maximo y minimo de caracteres pasa a ser post_config para darle mas provecho a la clase.
+
+6. Le di la responsabilidad de verificar el largo del post a la clase post_config
+
+7. Agregado el placeholder en los comentarios
 
 ## Day 12: 
 

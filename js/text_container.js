@@ -20,6 +20,18 @@ class post_configuration{
     set max_chars(maximum){
         this.max_chars_x_post = maximum;
     }
+
+    valid_length_of_the_post(text){
+        if(text.length<this.min_chars_x_post){
+            console.log("I can't publish a post with less than  "+this.min_chars_x_post+" characters");
+            return false;
+        }
+        if(text.length>this.max_chars_x_post){
+            console.log("I can't publish a post more less than "+this.min_chars_x_post+" characters");
+            return false;
+        }
+        return true;
+    }
 }
 
 class authors{
@@ -99,22 +111,6 @@ function modify_maximum(nuevo_maximo){
 }
 
 
-/**
- * Verifies that the text is between minimum and maximum variable
- * @param {*} text The text that will be verified (generally posts text)
- */
-function verify_length_of_post(text){
-    const post_size = new post_configuration();
-    if(text.length<post_size.min_chars){
-        console.log("I can't publish a post with less than  "+min_chars_x_post+" characters");
-        return false;
-    }
-    if(text.length>post_size.max_chars){
-        console.log("I can't publish a post more less than "+max_chars_x_post+" characters");
-        return false;
-    }
-    return true;
-}
 
 /**
  * Gets the html code with post text
@@ -162,7 +158,8 @@ function get_post_HTML(publication_date,title,author_id,text,category,tags,visit
 }
 
 function post_poster(){
-    if(verify_length_of_post(post["text"])){
+    const my_post_config = new post_configuration();
+    if(my_post_config.valid_length_of_the_post(post["text"])){
         image = ""
         if(post.hasOwnProperty("image")){
             image = post["image"];
@@ -173,9 +170,10 @@ function post_poster(){
 
 function posts_poster(){
     post_final = "";
+    const my_post_config = new post_configuration();
     Object.keys(posts_collection).forEach(
         function(key){
-            if(verify_length_of_post(posts_collection[key]["text"])){
+            if(my_post_config.valid_length_of_the_post(posts_collection[key]["text"])){
                 image = ""
                 if(posts_collection[key].hasOwnProperty("image")){
                     image = post["image"];
