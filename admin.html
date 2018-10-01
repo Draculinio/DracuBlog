@@ -6,13 +6,16 @@
     </head>
     <body>
         <div align="center">
-            <h1 class="title">Log In</h1>
+            <h1 class="title">Dracux Blog</h1>
+            <p class="admin_form_title">Log In</p>
             <form action="admin_control.html">
-                <label>User: </label>
-                <input type="text" size="20" length="20" class="form_inputs"><br><br>
-                <label>Password: </label>
-                <input type="password" size="20" length="20" class="form_inputs"><br><br>
-                <input type="submit" name="Login" value="Login">
+                    <div class="admin_login_container">
+                    <label class="admin_label">User: </label>
+                    <input type="text" size="20" length="20" class="admin_form_inputs">
+                    <label class="admin_label">Password: </label>
+                    <input type="password" size="20" length="20" class="admin_form_inputs">
+                    <div class="admin_submit_button_div"><input type="submit" name="Login" value="Login" class="admin_submit_button"></div>
+                </div>
             </form>
         </div>
     </body>
