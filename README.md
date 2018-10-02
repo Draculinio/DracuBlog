@@ -2,9 +2,13 @@
 
 >Sistema de blog iniciado para el #100daysofcodechallenge
 
-## Day 14:
+## Day 15
 
-1. Jugndo con el css del login de admin.
+1. Jugando con grids en el login de admin.
+
+## Day 14
+
+1. Jugando con el css del login de admin.
 
 ## Day 13
 
