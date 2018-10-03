@@ -1,14 +1,30 @@
 .footer { 
-    color:blue; 
+    color:white; 
+    font-size:10px;
+    background: linear-gradient(90deg,blue,white);
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .title {
-    color:darkblue;
+    
     font-size: 24px;
+    background: linear-gradient(90deg,blue,white);
+    color:white;
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.subtitle {
+    font-size: 16px;
+    background : white;
+    color: blue;
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .default_image {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 10px;
 }
 

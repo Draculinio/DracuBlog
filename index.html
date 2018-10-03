@@ -6,13 +6,29 @@
         <script src ="js/index_body_load.js"></script>
         <title>Dracux's Blog</title>
         <link rel="stylesheet" href="css/commons.css">
+        <link rel="stylesheet" href="css/index.css">
     </head>
 
     <body onload="index_load()">
         <div id="complete_title" align="center" class ="title"></div>
-        <img src="images/avatar.jpg" class="default_image">
-        <h3>Latest posts:</h3>
-        <div id="posts_titles"></div>
+        <!--CODIGO NUEVO-->
+        <div class="container">
+            <div class=".menu_container">
+                <h3 class="menu_links">Latest posts</h3>
+                <div id="posts_titles" class="titles_links"></div>
+            </div>
+            <div class="content_container">
+                <img src="images/avatar.jpg" class="default_image">
+            </div>
+            <!--<h3 class="index_section">Latest posts:</h3>
+            <div id="posts_titles" class="titles_links"></div>
+            <div class="principal_area">
+                <img src="images/avatar.jpg" class="default_image">        
+            </div>-->
+        </div>
+        <!--CODIGO VIEJO-->
+        
+        
         <a href = "posts.html">Go to Posts</a>
         
         <footer class = "footer">By Pablo Soifer</footer>

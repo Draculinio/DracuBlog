@@ -19,5 +19,5 @@ function set_subtitle(){
  * Gets Title and subtitle
  */
 function get_complete_title(){
-    document.getElementById("complete_title").innerHTML="<h1 class='title'>"+blog_config.titulo+"</h1>"+"<h3>"+blog_config.subtitulo+"</h3>";
+    document.getElementById("complete_title").innerHTML="<h1 class='title'>"+blog_config.titulo+"</h1>"+"<h3 class='subtitle'>"+blog_config.subtitulo+"</h3>";
 }

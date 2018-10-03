@@ -260,7 +260,7 @@ function post_comments_to_HTML(id){
 function listar_titulos(){
     final_list_of_titles = "<ul>";
     Object.keys(posts_collection).forEach(function(key){
-        final_list_of_titles += "<li><a href='post.html?post_id="+key+"'>"+posts_collection[key]["title"]+"</a></li>";
+        final_list_of_titles += "<li><a href='post.html?post_id="+key+"' class='menu_links'>"+posts_collection[key]["title"]+"</a></li>";
     });
     document.getElementById("posts_titles").innerHTML=final_list_of_titles+"</ul>";
 }

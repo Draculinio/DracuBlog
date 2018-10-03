@@ -2,6 +2,10 @@
 
 >Sistema de blog iniciado para el #100daysofcodechallenge
 
+## Day 16
+
+1. Modificando el título con CSS
+
 ## Day 15
 
 1. Jugando con grids en el login de admin.

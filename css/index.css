@@ -1,0 +1,44 @@
+.container {
+    display:grid;
+    width: 100%;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+    "menu principal"
+}
+
+.menu_container {
+    display:grid;
+    grid-area: menu;
+    grid-template-rows: 10% 90%;
+    background-color: blue;
+}
+
+.content_container {
+    display:grid;
+    grid-area: principal;
+    color: blue;
+}
+
+.titles_links {
+    background-color: blue;
+    color:white;
+    grid-area: menu; 
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-size:14px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.menu_links {
+    color: white;
+    colo
+    margin-top: 10px;
+    background-color: blue;
+}
+
+.index_section {
+    color:white;
+    font-size:16px;
+    
+}
