@@ -257,10 +257,10 @@ function post_comments_to_HTML(id){
     document.getElementById("list_of_comments").innerHTML=final_comments_list;
 }
 
-function listar_titulos(){
-    final_list_of_titles = "<ul>";
+function title_list(){
+    final_list_of_titles = "<h3 class='menu_title_links'>Latest Posts</h3>";
     Object.keys(posts_collection).forEach(function(key){
-        final_list_of_titles += "<li><a href='post.html?post_id="+key+"' class='menu_links'>"+posts_collection[key]["title"]+"</a></li>";
+        final_list_of_titles += "<a href='post.html?post_id="+key+"' class='menu_links'>"+posts_collection[key]["title"]+"</a><br>";
     });
     document.getElementById("posts_titles").innerHTML=final_list_of_titles+"</ul>";
 }

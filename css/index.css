@@ -1,7 +1,7 @@
 .container {
     display:grid;
     width: 100%;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 10% 90%;
     grid-template-rows: 1fr;
     grid-template-areas: 
     "menu principal"
@@ -9,36 +9,83 @@
 
 .menu_container {
     display:grid;
-    grid-area: menu;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: auto;
     background-color: blue;
+    grid-gap: 5px;
+    
 }
 
 .content_container {
     display:grid;
-    grid-area: principal;
     color: blue;
+    grid-template-areas:
+    "picture"
+    "blogDescription"
+    "blogLink";
+    grid-template-rows : 90% 10%;
+    row-gap:5px;
 }
 
-.titles_links {
+/*TITLE FOR LATEST POSTS*/
+.menu_title_links {
     background-color: blue;
     color:white;
-    grid-area: menu; 
-    padding-top: 10px;
-    padding-bottom: 20px;
-    font-size:14px;
+    font-size:18px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
 }
 
+/*ALL THE LINKS FOR LATEST POSTS*/
 .menu_links {
     color: white;
-    colo
-    margin-top: 10px;
     background-color: blue;
+    font-size:12px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    align-self: start;
 }
 
-.index_section {
+.default_image {
+    height:300;
+    width: 300;
+    margin-right:auto;
+    margin-left: auto;
+    grid-area: picture;
+}
+
+ .blog_button{
     color:white;
-    font-size:16px;
-    
+    background-color:blue;
+    font-size:18px;
+    height: 30px;
+    width:100px;
+    grid-area: blogLink;
+    margin-right:auto;
+    margin-left: auto;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.blog_button:hover{
+    color:white;
+    background-color:green;
+    font-size:18px;
+    height: 30px;
+    width:100px;
+    grid-area: blogLink;
+    margin-right:auto;
+    margin-left: auto;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.description {
+    color:blue;
+    font-size: 24;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    grid-area:blogDescription;
 }

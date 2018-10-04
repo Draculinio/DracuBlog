@@ -2,6 +2,12 @@
 
 >Sistema de blog iniciado para el #100daysofcodechallenge
 
+## Day 17
+
+1. Trabajando con CSS en el index.
+
+2. Usando hover para pasar por un link.
+
 ## Day 16
 
 1. Modificando el título con CSS
