@@ -51,7 +51,7 @@ input {
     grid-template-columns: 30% 70%;
     grid-template-rows: 25px 25px 25px 35px;
     grid-row-gap:10px;
-    background-color: lightgreen;
+    background-color: white;
     grid-area: form;
     border-color: blue;
 }
@@ -69,16 +69,18 @@ input {
 
 .admin_submit_button {
     width: 50%;
-    background-color: beige;
+    background-color: blue;
     font-family: sans-serif;
     font-size: 18px;
     margin-top:10px;
+    color:white;
 }
 
 .admin_form_inputs {
     margin-right: 5px;
     color: black;
     margin-top: 5px;
+    border-color: blue;
 }
 
 .admin_form_title{

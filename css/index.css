@@ -32,14 +32,14 @@
     color:white;
     font-size:18px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 /*ALL THE LINKS FOR LATEST POSTS*/
 .menu_links {
     color: white;
     background-color: blue;
-    font-size:12px;
+    font-size:16px;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     align-self: start;
 }
@@ -65,6 +65,8 @@
     vertical-align: middle;
     border-radius: 10px;
     text-decoration: none;
+    display: inline-block;
+    
 }
 
 .blog_button:hover{
@@ -80,6 +82,8 @@
     vertical-align: middle;
     border-radius: 10px;
     text-decoration: none;
+    display: inline-block;
+    
 }
 
 .description {
